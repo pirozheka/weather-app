@@ -1,0 +1,42 @@
+header {
+    background-color: var(--dark);
+    color: var(--beige);
+    padding: 5px 0;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__title {
+    color: var(--accent);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.header__city {
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.header__city-searchbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header__city-searchbox input {
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.header__city-searchbox button {
+    width: 31px;
+    height: 31px;
+}

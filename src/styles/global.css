@@ -39,3 +39,14 @@
   #root, #__next {
     isolation: isolate;
   }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
