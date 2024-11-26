@@ -1,16 +1,20 @@
+import React, { useState } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+import WeatherCard from "./components/WeatherCard";
 import "./styles/variables.css";
 import "./styles/global.css";
 
 function App() {
+  const [city, setCity] = useState(""); 
+
+  const handleCityChange = (newCity) => {
+    setCity(newCity); 
+  };
+
   return (
     <div className="App">
-      <Header />
-      <main className="content">
-
-      </main>
-      <Footer />
+      <Header onCityChange={handleCityChange} /> 
+      <WeatherCard city={city} /> 
     </div>
   );
 }

@@ -1,0 +1,44 @@
+main {
+    max-height: 80vh;
+}
+
+.weather-card {
+    width: 100%;
+    max-width: 450px;
+    height: 350px;
+    margin: 30% auto;
+    transform: translateY(-50%);
+    border: 1px solid var(--secondary);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 4px 4px 15px 0px var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.weather-card__title {
+    font-weight: bold;
+    font-size: 26px;
+}
+.weather-card__date {
+    font-size: 14px;
+}
+
+.weather-card__content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+}
+
+.temperature {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.description {
+    display: flex;
+    justify-content: center;
+}

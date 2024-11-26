@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/components/header.css";
 import { FaSearch } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({ onCityChange }) => {  
+    const [city, setCity] = useState("");
+
+    const handleInputChange = (e) => {
+        setCity(e.target.value);
+    };
+
+    const handleSearch = () => {
+        if (city.trim()) {
+            onCityChange(city);
+            setCity(""); 
+        }
+    };
+
     return (
         <header>
             <div className="container">
@@ -11,8 +24,15 @@ const Header = () => {
                     <div className="header__city">
                         <div>Поиск по городу:</div>
                         <div className="header__city-searchbox">
-                            <input type="text" placeholder="Найти..." />
-                            <button type="submit"><FaSearch /></button>
+                            <input
+                                type="text"
+                                placeholder="Найти..."
+                                value={city}
+                                onChange={handleInputChange}
+                            />
+                            <button type="button" onClick={handleSearch}>
+                                <FaSearch />
+                            </button>
                         </div>
                     </div>
                 </div>
