@@ -42,3 +42,9 @@ main {
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 630px) {
+    .weather-card {
+        margin: 60% auto;
+    }
+}
