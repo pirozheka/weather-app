@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { WiSnow } from "react-icons/wi";
-import { WiDaySunny } from "react-icons/wi";
-import { WiDayCloudy } from "react-icons/wi";
+import { WiSnow, WiDaySunny, WiDayCloudy } from "react-icons/wi";
 import "../styles/components/weathercard.css";
 
 const WeatherCard = ({ city }) => {
@@ -29,15 +27,22 @@ const WeatherCard = ({ city }) => {
                     return;
                 }
 
-                const geoResponse = await axios.get("https://geocoding-api.open-meteo.com/v1/search", {
-                    params: { name: city },
+                // Запрос к Nominatim для получения координат города
+                const geoResponse = await axios.get("https://nominatim.openstreetmap.org/search", {
+                    params: {
+                        q: city,
+                        format: "json",
+                        limit: 1,
+                    },
                 });
+
                 console.log("Ответ геокодера:", geoResponse.data);
 
-                if (geoResponse.data.results && geoResponse.data.results.length > 0) {
-                    const { latitude, longitude, name } = geoResponse.data.results[0];
+                if (geoResponse.data.length > 0) {
+                    const { lat: latitude, lon: longitude, display_name: name } = geoResponse.data[0];
                     console.log(`Используем город: ${name} с координатами (${latitude}, ${longitude})`);
 
+                    // Запрос к Open-Meteo для получения прогноза погоды
                     const weatherResponse = await axios.get("https://api.open-meteo.com/v1/forecast", {
                         params: {
                             latitude,
@@ -70,11 +75,10 @@ const WeatherCard = ({ city }) => {
         if (city) {
             fetchWeatherData();
         }
-    }, [city]); 
+    }, [city]);
 
-  
     if (loading) return <div>Загрузка...</div>;
-    if (error) return <div>{error}</div>; 
+    if (error) return <div>{error}</div>;
 
     return (
         <main>
@@ -88,10 +92,10 @@ const WeatherCard = ({ city }) => {
                     </div>
                     <div className="weather-card__content">
                         <div className="icon">
-                            {averageTemperature !== null && getWeatherIcon(averageTemperature)} 
+                            {averageTemperature !== null && getWeatherIcon(averageTemperature)}
                         </div>
                         <div className="temperature">
-                            {averageTemperature !== null ? `${averageTemperature}°C` : 'Данные о температуре недоступны'}
+                            {averageTemperature !== null ? `${averageTemperature.toFixed(1)}°C` : 'Данные о температуре недоступны'}
                         </div>
                     </div>
                 </div>

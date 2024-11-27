@@ -16,6 +16,12 @@ const Header = ({ onCityChange }) => {
         }
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        }
+    };
+
     return (
         <header>
             <div className="container">
@@ -29,6 +35,7 @@ const Header = ({ onCityChange }) => {
                                 placeholder="Найти..."
                                 value={city}
                                 onChange={handleInputChange}
+                                onKeyDown={handleKeyDown}
                             />
                             <button type="button" onClick={handleSearch}>
                                 <FaSearch />
